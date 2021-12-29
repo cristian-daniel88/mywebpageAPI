@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const { emailsGet } = require('../controllers/emails');
 const router = Router();
+const { emailsGet } = require('../controllers/emails');
 
 
 router.get('/', emailsGet );
