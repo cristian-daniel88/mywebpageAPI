@@ -1,9 +1,12 @@
 const { Router } = require('express');
 const router = Router();
-const { emailsGet } = require('../controllers/emails');
+const { emailsGet, emailPostUser } = require('../controllers/emails');
+
 
 
 router.get('/', emailsGet );
+
+router.post('/',emailPostUser)
 
 
 

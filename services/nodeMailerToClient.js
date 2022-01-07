@@ -1,3 +1,4 @@
+const res = require("express/lib/response");
 const nodemailer = require("nodemailer");
 
 function nodeMailerToClient(email) {
@@ -11,7 +12,7 @@ function nodeMailerToClient(email) {
 
   const options = {
     from: process.env.EMAIL,
-    to: email,
+    to: process.env.EMAIL,
     subject: "Thank you",
     html: `gracias por comunicarte`
   };
@@ -21,7 +22,9 @@ function nodeMailerToClient(email) {
       console.log(err);
       return;
     }
-
+    res.json({
+      msg: 'done'
+    })
     console.log(info.response);
   });
 }

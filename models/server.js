@@ -3,12 +3,11 @@ const cors = require("cors");
 
 const { dbConnection } = require("../db/config");
 
-
 class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT;
-    this.emails = "/api/emails";  
+    this.emails = "/api/emails";
 
     this.connectedDB();
 
@@ -22,22 +21,32 @@ class Server {
   }
 
   middlewares() {
+    var whitelist = ["http://localhost:3000"];
+    var corsOptions = {
+      origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+          callback(null, true);
+        } else {
+          callback(new Error("Not allowed by CORS"));
+        }
+      },
+    };
+
     // Cors
-    this.app.use(cors());
+    this.app.use(cors(corsOptions));
 
     // parseo y lectura del body
     this.app.use(express.json());
 
-    this.app.use(express.static('public'));
+    this.app.use(express.static("public"));
 
-  
     this.app.get("/", (req, res) => {
       res.send("Server is ready");
     });
   }
 
   routes() {
-    this.app.use(this.emails, require("../routes/emailsRoutes")); 
+    this.app.use(this.emails, require("../routes/emailsRoutes"));
   }
 
   listen() {
@@ -45,10 +54,6 @@ class Server {
       console.log("server working in", this.port);
     });
   }
-
-
- 
-
 }
 
 module.exports = Server;

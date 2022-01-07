@@ -1,6 +1,11 @@
+
 const nodemailer = require("nodemailer");
 
-function nodeMailer(subject, email, body) {
+
+
+
+
+function userSendMessage(subject, email, text) {
   const transporter = nodemailer.createTransport({
     service: "outlook",
     auth: {
@@ -10,13 +15,13 @@ function nodeMailer(subject, email, body) {
   });
 
   const options = {
-    from: process.env.EMAIL,
+    from:process.env.EMAIL,
     to: process.env.TO_EMAIL,
-    subject: subject,
-
-    html: `<h1>email:${email}</h1> <br> <p>${body}</p>`, // html body
+    subject: `${email} dice: ${subject}`,
+    text: text
   };
 
+ 
   transporter.sendMail(options, function (err, info) {
     if (err) {
       console.log(err);
@@ -27,4 +32,4 @@ function nodeMailer(subject, email, body) {
   });
 }
 
-module.exports = {nodeMailer};
+module.exports = {userSendMessage};
