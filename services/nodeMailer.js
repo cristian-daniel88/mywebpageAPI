@@ -6,10 +6,9 @@ const nodemailer = require("nodemailer");
 
 
 function userSendMessage(subject, email, text) {
-  const transporter = nodemailer.createTransport({
-    service: "outlook.com",
-    port: 587,
-    secure: false, 
+  const transporter = nodemailer.createTransport("SMPT",{
+    service: "hotmail",
+  
     auth: {
       user: process.env.EMAIL,
       pass: process.env.PASSWORD,
