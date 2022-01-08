@@ -6,7 +6,7 @@ const { emailsGet, emailPostUser } = require('../controllers/emails');
 
 router.get('/', emailsGet );
 
-router.post('/',emailPostUser)
+router.put('/',emailPostUser)
 
 
 
