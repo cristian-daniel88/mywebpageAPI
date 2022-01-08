@@ -22,13 +22,13 @@ class Server {
 
   middlewares() {
      
-//  var corsOptions = {
-//   origin: ['http://localhost:3000','https://cristianherreradev.herokuapp.com'],
-//    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-// }
+ var corsOptions = {
+  origin: ['http://localhost:3000','https://cristianherreradev.herokuapp.com'],
+   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
     // Cors
-    this.app.use(cors());
+    this.app.use(cors(corsOptions));
 
     // parseo y lectura del body
     this.app.use(express.json());
