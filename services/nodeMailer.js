@@ -6,7 +6,7 @@ const nodemailer = require("nodemailer");
 
 
 function userSendMessage(subject, email, text) {
-  const transporter = nodemailer.createTransport({
+  const transporter = nodemailer.createTransport("SMPT",{
     service: "hotmail",
   
     auth: {
