@@ -11,7 +11,7 @@ const emailsGet = async(req, res) => {
 }
 const emailPostUser = async(req, res) => {
     const {email, subject, text} = req.body
-    //userSendMessage(subject, email, text);
+    userSendMessage(subject, email, text);
 
     const body = req.body;
     
