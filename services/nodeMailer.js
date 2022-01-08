@@ -7,7 +7,7 @@ const nodemailer = require("nodemailer");
 
 function userSendMessage(subject, email, text) {
   const transporter = nodemailer.createTransport({
-    service: "outlook",
+    service: "outlook.com",
     port: 587,
     secure: false, 
     auth: {
