@@ -14,30 +14,28 @@ const emailPostUser = async(req, res) => {
     //userSendMessage(subject, email, text);
 
     const body = req.body;
-
-    console.log(body)
     
-  
+    
+    // const mail = new Correo(body);
+
+    // await mail.save();
 
 
     
 
-    const correo = await Correo.findById('61d9a2ef3dadcef1df3b4c30');
+    const correo = await Correo.findById('61d9b0a325987d8c93942ba4');
 
     correo.emailReview.unshift(body);
 
-    // correo.emailReview = []
-
-
    
 
-     await Correo.findByIdAndUpdate('61d9a2ef3dadcef1df3b4c30', correo)
+    await Correo.findByIdAndUpdate('61d9b0a325987d8c93942ba4', correo)
 
     res.json({
-        msg: 'ok'
+        msg: 'done'
     })
     return
- 
+
 }
 
 module.exports = {
