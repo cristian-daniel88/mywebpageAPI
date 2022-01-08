@@ -1,4 +1,4 @@
-const { userSendMessage } = require("../services/nodeMailer");
+//const { userSendMessage } = require("../services/nodeMailer");
 
 const Correo =require('../models/sendEmail')
 
@@ -13,7 +13,7 @@ const emailPostUser = async(req, res) => {
     const {email, subject, text} = req.body;
 
     
-    userSendMessage(subject, email, text);
+    //userSendMessage(subject, email, text);
     
     const body = req.body;
     
