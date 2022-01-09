@@ -13,6 +13,12 @@ const CorreoSchema = Schema({
 
     text: {
         type: String
+    },
+
+    state: {
+        type: Boolean,
+        default: true,
+        required: true
     }
  
 

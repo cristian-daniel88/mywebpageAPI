@@ -5,34 +5,65 @@ const Correo =require('../models/sendEmail')
 
 
 const emailsGet = async(req, res) => {
+    
+    
+    const {password} = req.body
+    const query = {state: true};
 
+
+    const {limite = 5, desde = 0, } = req.query;
+   
+    const [total, emails] = await Promise.all([
+       
+        Correo.countDocuments(query),
     
-    const emails = await Correo.find();
-    
-    const emailsReverse = emails.reverse()
-    
-    const {password} = req.body;
+        
+        Correo.find(query)
+            .skip(Number(desde))
+            .limit( Number(limite) )
+    ]);
+
+
+
 
     if (password === process.env.BACKEND) {
         
         res.json({
-            emailsReverse   
-        });   
+            total,
+            emails
+        });
+
+        return
+    } else {
+        res.json({
+            msg:'denegado'
+        });
     }
 
-    res.json({
-        msg: 'no'
-    })
-    
-
+ 
 
     
 }
 
 const emailDelete =  async(req, res) => {
-    res.json({
-        msg: "delete"
-    });   
+    const {password , id} = req.body;
+
+    
+    if (password === process.env.BACKEND) {
+        
+        const correo =  await Correo.findByIdAndUpdate(id , {state: false});
+        res.json({
+            msg: `id ${correo._id} deleted`
+        });
+
+        return
+    } else {
+        res.json({
+            msg:'denegado'
+        });
+    }
+
+ 
 }
 
 const emailPostUser = async(req, res) => {
