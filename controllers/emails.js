@@ -5,9 +5,28 @@ const Correo =require('../models/sendEmail')
 
 
 const emailsGet = async(req, res) => {
+
+    
+    const emails = await Correo.find();
+    
+    const emailsReverse = emails.reverse()
+    
+    const {password} = req.body;
+
+    if (password === process.env.BACKEND) {
+        
+        res.json({
+            emailsReverse   
+        });   
+    }
+
     res.json({
-        msg: "emails get"
-    });   
+        msg: 'no'
+    })
+    
+
+
+    
 }
 
 const emailDelete =  async(req, res) => {
