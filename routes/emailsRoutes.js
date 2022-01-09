@@ -4,9 +4,11 @@ const { emailsGet, emailPostUser } = require('../controllers/emails');
 
 
 
-router.get('/', emailsGet );
+router.post('/', emailsGet );
 
 router.put('/',emailPostUser);
+
+
 
 
 
