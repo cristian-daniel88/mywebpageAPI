@@ -1,12 +1,16 @@
 const { Router } = require('express');
 const router = Router();
-const { emailsGet, emailPostUser } = require('../controllers/emails');
+const { emailsGet, emailPostUser, emailDelete } = require('../controllers/emails');
 
 
 
 router.post('/', emailsGet );
 
 router.put('/',emailPostUser);
+
+router.delete('/', emailDelete);
+
+
 
 
 

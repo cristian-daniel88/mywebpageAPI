@@ -9,6 +9,13 @@ const emailsGet = async(req, res) => {
         msg: "emails get"
     });   
 }
+
+const emailDelete =  async(req, res) => {
+    res.json({
+        msg: "delete"
+    });   
+}
+
 const emailPostUser = async(req, res) => {
     const {email, subject, text} = req.body;
 
@@ -28,5 +35,6 @@ const emailPostUser = async(req, res) => {
 
 module.exports = {
     emailsGet ,
-    emailPostUser  
+    emailPostUser,
+    emailDelete  
 }
