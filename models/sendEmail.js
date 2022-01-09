@@ -3,8 +3,17 @@ const {Schema, model } = require('mongoose');
 
 const CorreoSchema = Schema({
 
+    email: {
+        type: String
+    },
 
-    emailReview:[]
+    subject: {
+        type: String
+    },
+
+    text: {
+        type: String
+    }
  
 
 });

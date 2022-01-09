@@ -12,28 +12,11 @@ const emailsGet = async(req, res) => {
 const emailPostUser = async(req, res) => {
     const {email, subject, text} = req.body;
 
+    const mail = new Correo({email, subject, text});
     
-    //userSendMessage(subject, email, text);
-    
-    const body = req.body;
-    
-    
-    //const mail = new Correo(body);
-    
-    // await mail.save();
+    await mail.save();
     
     
-    
-    
-
-    const correo = await Correo.findById('61d9b0a325987d8c93942ba4');
-
-    correo.emailReview.unshift(body);
-
-   
-
-    await Correo.findByIdAndUpdate('61d9b0a325987d8c93942ba4', correo)
-
     res.json({
         msg: 'done'
     })
