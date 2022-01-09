@@ -68,8 +68,9 @@ const emailDelete =  async(req, res) => {
 
 const emailPostUser = async(req, res) => {
     const {email, subject, text} = req.body;
+    const state = true
 
-    const mail = new Correo({email, subject, text});
+    const mail = new Correo({email, subject, text, state});
     
     //userSendMessage(subject, email, text);
 

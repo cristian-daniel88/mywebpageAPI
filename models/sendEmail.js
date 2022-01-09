@@ -15,7 +15,11 @@ const CorreoSchema = Schema({
         type: String
     },
 
-    state: true
+    state: {
+        type: Boolean,
+        default: true,
+    
+    }
  
 
 });
