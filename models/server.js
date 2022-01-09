@@ -28,7 +28,7 @@ class Server {
 }
 
     // Cors
-    this.app.use(cors());
+    this.app.use(cors(corsOptions));
 
     // parseo y lectura del body
     this.app.use(express.json());
