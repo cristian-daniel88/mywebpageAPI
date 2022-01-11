@@ -15,10 +15,10 @@ const emailsGet = async (req, res) => {
   ]);
 
   if (password === process.env.BACKEND) {
-   let emailsReverse = emails.reverse();
+ 
     res.json({
       total,
-      emailsReverse,
+      emails: emails.reverse()
     });
 
     return;
