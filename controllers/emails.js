@@ -6,28 +6,29 @@ const emailsGet = async (req, res) => {
   const { password } = req.body;
   const query = { state: true };
 
-  let last5 =  await (await Correo.find({state : true})).length - 5;
+  let last5 =  await (await Correo.find({state : true})).length;
 
   if(last5 < 5) {
     last5 = 0
+  } else {
+    last5 = last5 - 5
   }
 
- 
-  
 
   const { limite = 5, desde = last5 } = req.query;
 
   const [total, emails] = await Promise.all([
     Correo.countDocuments(query),
 
-    Correo.find(query).skip(Number(desde)).limit(Number(limite)),
+    (await Correo.find(query).skip(Number(desde)).limit(Number(limite))).reverse(),
   ]);
 
   if (password === process.env.BACKEND) {
- 
+    
+    
     res.json({
       total,
-      emails: emails.reverse()
+      emails 
     });
 
     return;
