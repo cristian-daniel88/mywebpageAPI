@@ -1,91 +1,106 @@
 //const { userSendMessage } = require("../services/nodeMailer");
 
-const Correo =require('../models/sendEmail')
+const Correo = require("../models/sendEmail");
 
+const emailsGet = async (req, res) => {
+  const { password } = req.body;
+  const query = { state: true };
 
+  const { limite = 5, desde = 0 } = req.query;
 
-const emailsGet = async(req, res) => {
-    
-    
-    const {password} = req.body
-    const query = {state: true};
+  const [total, emails] = await Promise.all([
+    Correo.countDocuments(query),
 
+    Correo.find(query).skip(Number(desde)).limit(Number(limite)),
+  ]);
 
-    const {limite = 5, desde = 0, } = req.query;
-   
-    const [total, emails] = await Promise.all([
-       
-        Correo.countDocuments(query),
-    
-        
-        Correo.find(query)
-            .skip(Number(desde))
-            .limit( Number(limite) )
-    ]);
-
-
-
-
-    if (password === process.env.BACKEND) {
-        emails.reverse()
-        res.json({
-            total,
-            emails
-        });
-
-        return
-    } else {
-        res.json({
-            msg:'denegado'
-        });
-    }
-
- 
-
-    
-}
-
-const emailDelete =  async(req, res) => {
-    const {password , id} = req.body;
-
-    
-    if (password === process.env.BACKEND) {
-        
-        const correo =  await Correo.findByIdAndUpdate(id , {state: false});
-        res.json({
-            msg: `id ${correo._id} deleted`
-        });
-
-        return
-    } else {
-        res.json({
-            msg:'denegado'
-        });
-    }
-
- 
-}
-
-const emailPostUser = async(req, res) => {
-    const {email, subject, text} = req.body;
-    const state = true
-
-    const mail = new Correo({email, subject, text, state});
-    
-    //userSendMessage(subject, email, text);
-
-    await mail.save();
-    
-    
+  if (password === process.env.BACKEND) {
+    emails.reverse();
     res.json({
-        msg: 'done'
-    })
-    return
+      total,
+      emails,
+    });
 
-}
+    return;
+  } else {
+    res.json({
+      msg: "denegado",
+    });
+  }
+};
+
+const emailDelete = async (req, res) => {
+  const { password, id } = req.body;
+
+  if (password === process.env.BACKEND) {
+    const correo = await Correo.findByIdAndUpdate(id, { state: false });
+    res.json({
+      msg: `id ${correo._id} deleted`,
+    });
+
+    return;
+  } else {
+    res.json({
+      msg: "denegado",
+    });
+  }
+};
+
+const emailPostUser = async (req, res) => {
+  // Date
+  let date_ob = new Date();
+
+  // current date
+  // adjust 0 before single digit date
+  let date = ("0" + date_ob.getDate()).slice(-2);
+
+  // current month
+  let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+  // current year
+  let year = date_ob.getFullYear();
+
+  // current hours
+  let hours = date_ob.getHours();
+
+  // current minutes
+  let minutes = date_ob.getMinutes();
+
+  // current seconds
+  let seconds = date_ob.getSeconds();
+
+  // fecha
+  let fecha =
+    date +
+    "-" +
+    month +
+    "-" +
+    year +
+    " " +
+    hours +
+    ":" +
+    minutes +
+    ":" +
+    seconds;
+
+  //
+  const { email, subject, text } = req.body;
+  const state = true;
+
+  const mail = new Correo({ email, subject, text, state, fecha });
+
+  //userSendMessage(subject, email, text);
+
+  await mail.save();
+
+  res.json({
+    msg: "done",
+  });
+  return;
+};
 
 module.exports = {
-    emailsGet ,
-    emailPostUser,
-    emailDelete  
-}
+  emailsGet,
+  emailPostUser,
+  emailDelete,
+};

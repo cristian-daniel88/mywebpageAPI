@@ -19,6 +19,10 @@ const CorreoSchema = Schema({
         type: Boolean,
         default: true,
         required: true
+    },
+
+    fecha : {
+        type: String,
     }
  
 
