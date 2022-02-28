@@ -1,4 +1,4 @@
-const { userSendMessage } = require("../services/nodeMailer");
+//const { userSendMessage } = require("../services/nodeMailer");
 
 const Correo = require("../models/sendEmail");
 
@@ -100,7 +100,7 @@ const emailPostUser = async (req, res) => {
 
   const mail = new Correo({ email, subject, text, state, fecha });
 
-  userSendMessage(subject, email, text);
+  //userSendMessage(subject, email, text);
 
   await mail.save();
 
