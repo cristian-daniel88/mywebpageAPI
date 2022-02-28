@@ -23,7 +23,7 @@ class Server {
   middlewares() {
      
  var corsOptions = {
-  origin: ['http://localhost:3000','https://cristianherreradeveloper.vercel.app', 'https://cristianherreraemails.vercel.app'],
+  origin: ['http://localhost:3000','https://cristianherreradeveloper.vercel.app', 'https://cristianherreraemails.vercel.app', 'https://cristianherreradev.co.uk'],
    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
