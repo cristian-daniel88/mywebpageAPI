@@ -9,7 +9,7 @@ function userSendMessage(subject, email, text) {
   const transporter = nodemailer.createTransport({
     host: "smtp.titan.email",
     port: 465,
-    secure: false,
+    
     auth: {
       user: process.env.EMAIL,
       pass: process.env.PASSWORD,
