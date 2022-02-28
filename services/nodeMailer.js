@@ -7,8 +7,9 @@ const nodemailer = require("nodemailer");
 
 function userSendMessage(subject, email, text) {
   const transporter = nodemailer.createTransport({
-    host: "mail.cristianherreradev.co.uk",
+    host: "mx1.titan.email",
     port: 465,
+    secure: false,
     auth: {
       user: process.env.EMAIL,
       pass: process.env.PASSWORD,
