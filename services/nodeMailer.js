@@ -7,7 +7,7 @@ const nodemailer = require("nodemailer");
 
 function userSendMessage(subject, email, text) {
   const transporter = nodemailer.createTransport({
-    host: "mx1.titan.email",
+    host: "smtp.titan.email",
     port: 465,
     secure: false,
     auth: {
