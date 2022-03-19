@@ -11,9 +11,9 @@ function userSendMessage(subject, email, text) {
     // port: 465,
     // secure:'true',
     host:"imap.cristianherreradev.co.uk",
-    port:587,
+    port:993,
     secure:false,
-    
+
     auth: {
       user: process.env.EMAIL,
       pass: process.env.PASSWORD,
