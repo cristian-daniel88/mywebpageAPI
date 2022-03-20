@@ -10,8 +10,12 @@ function userSendMessage(subject, email, text) {
     // host: "smtp.titan.email",
     // port: 465,
     // secure:'true',
-    host:"imap.cristianherreradev.co.uk",
-    port:993,
+    // host:"imap.cristianherreradev.co.uk",
+    // port:993,
+    host:'smtp.trulygorgeous.co.uk',
+    port:465,
+    secure:true,
+    
   
 
     auth: {
